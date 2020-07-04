@@ -1,0 +1,47 @@
+quester: 'Hugo'
+first: 'unbekannt,zurück'
+stop: 'false'
+
+NPC_options:
+  'unbekannt':
+    text: 'Hallo, wer bist denn du?'
+    conditions: 'kennt_hugo!'
+    pointer: 'begrüßen,gehen'
+  'vorstellen':
+    text: 'Das freut mich aber %player%. Ich habe ein Problem, ich habe so einen großen Hunger, kannst du mir bitte helfen?'
+    events: 'kennt_hugo'
+    pointer: 'quest_annehmen,quest_ablehnen'
+  'quest_angenommen':
+    text: 'Bring mir 4 Brote und einen Apfel.'
+  'zurück':
+    text: 'Endlich bist du wieder hier &player%. Hast du mein Essen dabei??'
+    conditions: 'kennt_hugo'
+    pointer: 'zurück_ja,zurück_nein'
+  'nichts_dabei':
+    text: 'Ich habe Hunger, beeil dich!'
+  'gibt_essen':
+    text: 'Mmh, lecker. Hier nimm deine Belohnung'
+    conditions: 'hat_essen'
+    events: 'quest_belohnung'
+
+
+#########################################################################
+player_options:
+  'begrüßen':
+    text: 'Hallo junger Mann, ich bin %player%, und wer bist du?'
+    pointer: 'vorstellen'
+  'gehen':
+    text: 'Das geht dich gar nichts an!'
+  'quest_annehmen':
+    text: 'Ja klar, alles für die Wampenpflege'
+    pointer: 'quest_angenommen'
+  'quest_ablehnen':
+    text: 'Schnorrern helfe ich nie.'
+  'zurück_ja':
+    text: 'Ja, ich habe alles Hugo.'
+    conditions: 'hat_essen'
+    pointer: 'gibt_essen'
+  'zurück_nein':
+    text: 'Ne, ich habe noch nichts.'
+    conditions: 'hat_essen!'
+    pointer: 'nichts_dabei'
